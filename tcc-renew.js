@@ -79,6 +79,28 @@ $(function () {
         withoutJournal: "Not Included"
     }
 
+    var stripeCheckoutPriceCode = {
+        individualBaseMonthly: "price_1KbFyLAbOHXxPX3ztkfYL7MY",
+        smallBaseMonthly: "price_1KbG6YAbOHXxPX3ze5I4MLgI",
+        mediumBaseMonthly:"price_1KbKAOAbOHXxPX3zp7WRuppx",
+        largeBaseMonthly:"price_1KbKCwAbOHXxPX3zTOj2LX1L",
+
+        individualBaseAnnual: "price_1KbFyLAbOHXxPX3zl3DiKJ50",
+        smallBaseAnnual: "price_1KbGEQAbOHXxPX3zjmGvwlEq",
+        mediumBaseAnnual: "price_1KbKBdAbOHXxPX3zOyXt5orm",
+        largeBaseAnnual: "price_1KbKDlAbOHXxPX3zk4PAlLbT",
+
+        smallExtraMonthly: "price_1KbG9GAbOHXxPX3z2VsxWFUl",
+        mediumExtraMonthly:"price_1KbKAnAbOHXxPX3znL4AKGXU",
+        largeExtraMonthly:"price_1KbKDHAbOHXxPX3zYK2iJYRT",
+
+        smallExtraAnnual: "price_1KbK8wAbOHXxPX3z0EwYmMb9",
+        mediumExtraAnnual:"price_1KbKC1AbOHXxPX3zb1JEiQxV",
+        largeExtraAnnual:"price_1KbKE8AbOHXxPX3zS4NJK3UB"
+
+
+    }
+
 
 
 
@@ -256,6 +278,14 @@ $(function () {
         return totalAmount;
     }
 
+    var setCheckoutButtonRedirect = function(){
+        if(isSwitchedToAnnual){
+            
+        }else{
+
+        }
+    }
+
 
     
 
@@ -273,17 +303,13 @@ $(function () {
         stripe.redirectToCheckout({
             lineItems: [{ price: 'price_1KZ43pAbOHXxPX3zLRrz6Okq', quantity: 1 }],
             mode: 'subscription',
-            /*
-             * Do not rely on the redirect to the successUrl for fulfilling
-             * purchases, customers may not always reach the success_url after
-             * a successful payment.
-             * Instead use one of the strategies described in
-             * https://stripe.com/docs/payments/checkout/fulfill-orders
-             */
             successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
             cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
+            // shippingAddressCollection: {
+            //     allowedCountries: ['US', 'CA', 'AU', 'CN'],
+            // }
+
             shippingAddressCollection: {
-                allowedCountries: ['US', 'CA', 'AU', 'CN'],
             }
         })
             .then(function (result) {
