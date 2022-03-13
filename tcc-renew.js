@@ -97,7 +97,13 @@ $(function () {
         smallExtraAnnual: "price_1KbK8wAbOHXxPX3z0EwYmMb9",
         mediumExtraAnnual:"price_1KbKC1AbOHXxPX3zb1JEiQxV",
         largeExtraAnnual:"price_1KbKE8AbOHXxPX3zS4NJK3UB"
+    }
 
+    var cartitem = {
+        lineItems: [{ price: 'price_1KZ43pAbOHXxPX3zLRrz6Okq', quantity: 1 }]
+    }
+
+    var shippingBlock = {
 
     }
 
@@ -289,28 +295,19 @@ $(function () {
 
     
 
-    
-    
-    //stripe button stuff. Do Not Touch
+
+        //stripe button stuff. Do Not Touch
     var stripe = Stripe('pk_test_51H7AHJAbOHXxPX3zcepgLQRJoWGR95z9TvRx5Rv8sazgZJcDr2X8HAPQhDtziCrnIidRnYPFYMDsutkREvqkM1vE00TC2eeym1');
 
     var checkoutButton = document.getElementById('checkout-button');
     checkoutButton.addEventListener('click', function () {
-        /*
-         * When the customer clicks on the button, redirect
-         * them to Checkout.
-         */
+
         stripe.redirectToCheckout({
-            lineItems: [{ price: 'price_1KZ43pAbOHXxPX3zLRrz6Okq', quantity: 1 }],
+            cartitem,
             mode: 'subscription',
             successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
             cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
-            // shippingAddressCollection: {
-            //     allowedCountries: ['US', 'CA', 'AU', 'CN'],
-            // }
-
-            shippingAddressCollection: {
-            }
+            shippingBlock
         })
             .then(function (result) {
                 if (result.error) {
@@ -323,5 +320,33 @@ $(function () {
                 }
             });
     });
-
 })
+    
+    
+//     //stripe button stuff. Do Not Touch
+//     var stripe = Stripe('pk_test_51H7AHJAbOHXxPX3zcepgLQRJoWGR95z9TvRx5Rv8sazgZJcDr2X8HAPQhDtziCrnIidRnYPFYMDsutkREvqkM1vE00TC2eeym1');
+
+//     var checkoutButton = document.getElementById('checkout-button');
+//     checkoutButton.addEventListener('click', function () {
+
+//         stripe.redirectToCheckout({
+//             lineItems: [{ price: 'price_1KZ43pAbOHXxPX3zLRrz6Okq', quantity: 1 }],
+//             mode: 'subscription',
+//             successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
+//             cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
+//             shippingAddressCollection: {
+//                 allowedCountries: ['US', 'CA', 'AU', 'CN'],
+//             }
+//         })
+//             .then(function (result) {
+//                 if (result.error) {
+//                     /*
+//                      * If `redirectToCheckout` fails due to a browser or network
+//                      * error, display the localized error message to your customer.
+//                      */
+//                     var displayError = document.getElementById('error-message');
+//                     displayError.textContent = result.error.message;
+//                 }
+//             });
+//     });
+// })
