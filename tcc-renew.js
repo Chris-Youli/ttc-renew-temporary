@@ -11,6 +11,7 @@ $(function () {
 
         checkoutPanelJournalLabel: $("#ttc-renew-journal-label"),
         checkoutPanelExtraAmount: $("#ttc-renew-checkout-extra-amount"),
+        checkoutPanelTotal: $("#ttc-renew-checkout-total"),
 
         packageCardPriceIndividual:$("#ttc-renew-card-price-individual"),
         packageCardPriceSmall:$("#ttc-renew-card-price-small"),
@@ -22,6 +23,8 @@ $(function () {
         packageCardPerExtraLarge:$("#ttc-renew-card-per-extra-large"),
         
         packageCardExtraSelector: $(".ttc-renew-number-login-selector"),
+
+        
         
 
                 
@@ -197,32 +200,60 @@ $(function () {
             case selectedPlanOptions.individual:
                 uiStorage.checkoutPanelPackageName.html(selectedPlanLabel.individual);
                 uiStorage.checkoutPanelPackageBasePrice.html(isSwitchedToAnnual? subscriptionBaseCost.individualAnnual: subscriptionBaseCost.individualMonthly);
-                uiStorage.checkoutPanelExtraAmount.html(selectedNumberOfExtras);    
+                uiStorage.checkoutPanelExtraAmount.html(selectedNumberOfExtras); 
+                
+                var calculateTotalAmount =  calculatedTotal(
+                    (isSwitchedToAnnual? subscriptionBaseCost.individualAnnual: subscriptionBaseCost.individualMonthly),
+                    (0)
+                    ); 
+                uiStorage.checkoutPanelTotal.html(calculateTotalAmount);
+                 
                 break;
 
             case selectedPlanOptions.small:
                 uiStorage.checkoutPanelPackageName.html(selectedPlanLabel.small);
                 uiStorage.checkoutPanelPackageBasePrice.html(isSwitchedToAnnual? subscriptionBaseCost.smallAnnual: subscriptionBaseCost.smallMonthly);
-                uiStorage.checkoutPanelExtraAmount.html(selectedNumberOfExtras);    
+                uiStorage.checkoutPanelExtraAmount.html(selectedNumberOfExtras);   
+                
+                var calculateTotalAmount =  calculatedTotal(
+                    (isSwitchedToAnnual? subscriptionBaseCost.smallAnnual: subscriptionBaseCost.smallMonthly),
+                    (isSwitchedToAnnual? subscriptionExtraCost.smallAnnual: subscriptionExtraCost.smallMonthly)
+                    ); 
+                uiStorage.checkoutPanelTotal.html(calculateTotalAmount);
+
+                
                 break;
 
             case selectedPlanOptions.medium:
                 uiStorage.checkoutPanelPackageName.html(selectedPlanLabel.medium);
                 uiStorage.checkoutPanelPackageBasePrice.html(isSwitchedToAnnual? subscriptionBaseCost.mediumAnnual: subscriptionBaseCost.mediumMonthly);
-                uiStorage.checkoutPanelExtraAmount.html(selectedNumberOfExtras);    
+                uiStorage.checkoutPanelExtraAmount.html(selectedNumberOfExtras);  
+
+                var calculateTotalAmount =  calculatedTotal(
+                    (isSwitchedToAnnual? subscriptionBaseCost.mediumAnnual: subscriptionBaseCost.mediumMonthly),
+                    (isSwitchedToAnnual? subscriptionExtraCost.mediumAnnual: subscriptionExtraCost.mediumMonthly)
+                    ); 
+                uiStorage.checkoutPanelTotal.html(calculateTotalAmount);  
                 break;
 
             case selectedPlanOptions.large:
                 uiStorage.checkoutPanelPackageName.html(selectedPlanLabel.large);
                 uiStorage.checkoutPanelExtraAmount.html(selectedNumberOfExtras);    
                 uiStorage.checkoutPanelPackageBasePrice.html(isSwitchedToAnnual? subscriptionBaseCost.largeAnnual: subscriptionBaseCost.largeMonthly);
+                var calculateTotalAmount =  calculatedTotal(
+                    (isSwitchedToAnnual? subscriptionBaseCost.largeAnnual: subscriptionBaseCost.largeMonthly),
+                    (isSwitchedToAnnual? subscriptionExtraCost.largeAnnual: subscriptionExtraCost.largeMonthly)
+                    ); 
+                uiStorage.checkoutPanelTotal.html(calculateTotalAmount);  
                 break;
 
         }
     }
 
-    var calculatedNumberOfExtra = function(){
-
+    var calculatedTotal = function(subscriptionBaseCost, extraPerUnitCost){
+        var numberOfExtras = selectedNumberOfExtras
+        var totalAmount = subscriptionBaseCost + numberOfExtras*extraPerUnitCost;
+        return totalAmount;
     }
 
 
