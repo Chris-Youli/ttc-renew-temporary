@@ -22,12 +22,13 @@ $(function () {
         packageCardPerExtraLarge:$("#ttc-renew-card-per-extra-large"),
         
         packageCardExtraSelector: $(".ttc-renew-number-login-selector"),
+        
 
                 
         
-        packageCardExtraSmall: $("#ttc-renew-field-extra-small"),
-        packageCardExtraMedium: $("#ttc-renew-field-extra-medium"),
-        packageCardExtraLarge: $("#ttc-renew-field-extra-large")
+        packageCardExtraSelectorSmall: $("#ttc-renew-field-extra-small"),
+        packageCardExtraSelectorMedium: $("#ttc-renew-field-extra-medium"),
+        packageCardExtraSelectorLarge: $("#ttc-renew-field-extra-large")
 
     }
 
@@ -158,18 +159,21 @@ $(function () {
 
             case selectedPlanOptions.small:
                 selectedPlan = selectedPlanOptions.small;
+                selectedNumberOfExtras = uiStorage.packageCardExtraSelectorSmall.val();
                 updatePlanCardStyle();
                 updateCheckoutPanel();
                 break;
 
             case selectedPlanOptions.medium:
                 selectedPlan = selectedPlanOptions.medium;
+                selectedNumberOfExtras = uiStorage.packageCardExtraSelectorMedium.val();
                 updatePlanCardStyle();
                 updateCheckoutPanel();
                 break;
 
             case selectedPlanOptions.large:
                 selectedPlan = selectedPlanOptions.large;
+                selectedNumberOfExtras = uiStorage.packageCardExtraSelectorLarge.val();
                 updatePlanCardStyle();
                 updateCheckoutPanel();
                 break;
@@ -216,6 +220,12 @@ $(function () {
 
         }
     }
+
+    var calculatedNumberOfExtra = function(){
+
+    }
+
+
     
 
     
