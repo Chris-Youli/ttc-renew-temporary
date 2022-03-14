@@ -103,13 +103,7 @@ $(function () {
         largeExtraAnnual:"price_1KbKE8AbOHXxPX3zS4NJK3UB"
     }
 
-    var cartitem = {
-        lineItems: [{ price: 'price_1KZ43pAbOHXxPX3zLRrz6Okq', quantity: 1 }]
-    }
 
-    var shippingBlock = {
-
-    }
 
 
 
@@ -322,6 +316,7 @@ $(function () {
                 case selectedPlanOptions.small:
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.smallBaseAnnual, quantity: 1 },
                                 {price: stripeCheckoutPriceCode.smallExtraAnnual, quantity: selectedNumberOfExtras}],
@@ -345,6 +340,8 @@ $(function () {
                         });
                     }else{
                         checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
+
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.smallBaseAnnual, quantity: 1 }],
                                 mode: 'subscription',
@@ -372,6 +369,8 @@ $(function () {
                 case selectedPlanOptions.medium:
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
+
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 },
                                 {price: stripeCheckoutPriceCode.mediumExtraAnnual, quantity: selectedNumberOfExtras}],
@@ -395,6 +394,8 @@ $(function () {
                         });
                     }else{
                         checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
+
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 }],
                                 mode: 'subscription',
@@ -422,6 +423,8 @@ $(function () {
                 case selectedPlanOptions.large:
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
+
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.largeBaseAnnual, quantity: 1 },
                                 {price: stripeCheckoutPriceCode.largeExtraAnnual, quantity: selectedNumberOfExtras}],
@@ -445,6 +448,8 @@ $(function () {
                         });
                     }else{
                         checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
+
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.largeBaseAnnual, quantity: 1 }],
                                 mode: 'subscription',
