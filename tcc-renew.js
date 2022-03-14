@@ -319,7 +319,7 @@ $(function () {
                             console.log(selectedNumberOfExtras);
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.smallBaseAnnual, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.smallExtraAnnual, quantity: selectedNumberOfExtras}],
+                                {price: stripeCheckoutPriceCode.smallExtraAnnual, quantity: parseInt(selectedNumberOfExtras)}],
                                 mode: 'subscription',
                                 successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
                                 cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
@@ -373,7 +373,7 @@ $(function () {
 
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.mediumExtraAnnual, quantity: selectedNumberOfExtras}],
+                                {price: stripeCheckoutPriceCode.mediumExtraAnnual, quantity: parseInt(selectedNumberOfExtras)}],
                                 mode: 'subscription',
                                 successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
                                 cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
@@ -427,7 +427,7 @@ $(function () {
 
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.largeBaseAnnual, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.largeExtraAnnual, quantity: selectedNumberOfExtras}],
+                                {price: stripeCheckoutPriceCode.largeExtraAnnual, quantity: parseInt(selectedNumberOfExtras)}],
                                 mode: 'subscription',
                                 successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
                                 cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
