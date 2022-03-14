@@ -16,6 +16,7 @@ $(function () {
         checkoutPanelJournalLabel: $("#ttc-renew-journal-label"),
         checkoutPanelExtraAmount: $("#ttc-renew-checkout-extra-amount"),
         checkoutPanelTotal: $("#ttc-renew-checkout-total"),
+        checkoutPanelBillingPeriod: $("#ttc-checkout-billing-period-label"),
 
         packageCardPriceIndividual:$("#ttc-renew-card-price-individual"),
         packageCardPriceSmall:$("#ttc-renew-card-price-small"),
@@ -233,6 +234,8 @@ $(function () {
                     (0)
                     ); 
                 uiStorage.checkoutPanelTotal.html(calculateTotalAmount);
+                uiStorage.checkoutPanelBillingPeriod.html(isSwitchedToAnnual? "yr": "mth");
+
                  
                 setCheckoutButtonRedirect();
                 break;
@@ -247,6 +250,7 @@ $(function () {
                     (isSwitchedToAnnual? subscriptionExtraCost.smallAnnual: subscriptionExtraCost.smallMonthly)
                     ); 
                 uiStorage.checkoutPanelTotal.html(calculateTotalAmount);
+                uiStorage.checkoutPanelBillingPeriod.html(isSwitchedToAnnual? "yr": "mth");
 
                 setCheckoutButtonRedirect();
                 break;
@@ -261,6 +265,7 @@ $(function () {
                     (isSwitchedToAnnual? subscriptionExtraCost.mediumAnnual: subscriptionExtraCost.mediumMonthly)
                     ); 
                 uiStorage.checkoutPanelTotal.html(calculateTotalAmount);  
+                uiStorage.checkoutPanelBillingPeriod.html(isSwitchedToAnnual? "yr": "mth");
                 setCheckoutButtonRedirect();
                 break;
 
@@ -273,6 +278,7 @@ $(function () {
                     (isSwitchedToAnnual? subscriptionExtraCost.largeAnnual: subscriptionExtraCost.largeMonthly)
                     ); 
                 uiStorage.checkoutPanelTotal.html(calculateTotalAmount); 
+                uiStorage.checkoutPanelBillingPeriod.html(isSwitchedToAnnual? "yr": "mth");
                 setCheckoutButtonRedirect(); 
                 break;
 
@@ -476,6 +482,173 @@ $(function () {
     
             }
         }else{
+            switch (selectedPlan){
+                case selectedPlanOptions.individual:
+                    checkoutButton.addEventListener('click', function () {
+                        stripe.redirectToCheckout({
+                            lineItems: [{ price: stripeCheckoutPriceCode.individualBaseMonthly, quantity: 1 }],
+                            mode: 'subscription',
+                            successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
+                            cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                        })
+                            .then(function (result) {
+                                if (result.error) {
+                                    /*
+                                     * If `redirectToCheckout` fails due to a browser or network
+                                     * error, display the localized error message to your customer.
+                                     */
+                                    var displayError = document.getElementById('error-message');
+                                    displayError.textContent = result.error.message;
+                                }
+                            });
+                    });
+                    
+                    break;
+    
+                case selectedPlanOptions.small:
+                    if(selectedNumberOfExtras != 0){
+                        checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
+                            stripe.redirectToCheckout({
+                                lineItems: [{ price: stripeCheckoutPriceCode.smallBaseMonthly, quantity: 1 },
+                                {price: stripeCheckoutPriceCode.smallExtraMonthly, quantity: parseInt(selectedNumberOfExtras)}],
+                                mode: 'subscription',
+                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
+                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                            })
+                                .then(function (result) {
+                                    if (result.error) {
+                                        /*
+                                         * If `redirectToCheckout` fails due to a browser or network
+                                         * error, display the localized error message to your customer.
+                                         */
+                                        var displayError = document.getElementById('error-message');
+                                        displayError.textContent = result.error.message;
+                                    }
+                                });
+                        });
+                    }else{
+                        checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
+
+                            stripe.redirectToCheckout({
+                                lineItems: [{ price: stripeCheckoutPriceCode.smallBaseMonthly, quantity: 1 }],
+                                mode: 'subscription',
+                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
+                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                            })
+                                .then(function (result) {
+                                    if (result.error) {
+                                        /*
+                                         * If `redirectToCheckout` fails due to a browser or network
+                                         * error, display the localized error message to your customer.
+                                         */
+                                        var displayError = document.getElementById('error-message');
+                                        displayError.textContent = result.error.message;
+                                    }
+                                });
+                        });
+                    }
+                   
+                    break;
+    
+                case selectedPlanOptions.medium:
+                    if(selectedNumberOfExtras != 0){
+                        checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
+
+                            stripe.redirectToCheckout({
+                                lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseMonthly, quantity: 1 },
+                                {price: stripeCheckoutPriceCode.mediumExtraMonthly, quantity: parseInt(selectedNumberOfExtras)}],
+                                mode: 'subscription',
+                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
+                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                            })
+                                .then(function (result) {
+                                    if (result.error) {
+                                        /*
+                                         * If `redirectToCheckout` fails due to a browser or network
+                                         * error, display the localized error message to your customer.
+                                         */
+                                        var displayError = document.getElementById('error-message');
+                                        displayError.textContent = result.error.message;
+                                    }
+                                });
+                        });
+                    }else{
+                        checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
+
+                            stripe.redirectToCheckout({
+                                lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseMonthly, quantity: 1 }],
+                                mode: 'subscription',
+                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
+                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                            })
+                                .then(function (result) {
+                                    if (result.error) {
+                                        /*
+                                         * If `redirectToCheckout` fails due to a browser or network
+                                         * error, display the localized error message to your customer.
+                                         */
+                                        var displayError = document.getElementById('error-message');
+                                        displayError.textContent = result.error.message;
+                                    }
+                                });
+                        });
+                    }
+                    
+                    break;
+    
+                case selectedPlanOptions.large:
+                    if(selectedNumberOfExtras != 0){
+                        checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
+
+                            stripe.redirectToCheckout({
+                                lineItems: [{ price: stripeCheckoutPriceCode.largeBaseMonthly, quantity: 1 },
+                                {price: stripeCheckoutPriceCode.largeExtraMonthly, quantity: parseInt(selectedNumberOfExtras)}],
+                                mode: 'subscription',
+                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
+                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                            })
+                                .then(function (result) {
+                                    if (result.error) {
+                                        /*
+                                         * If `redirectToCheckout` fails due to a browser or network
+                                         * error, display the localized error message to your customer.
+                                         */
+                                        var displayError = document.getElementById('error-message');
+                                        displayError.textContent = result.error.message;
+                                    }
+                                });
+                        });
+                    }else{
+                        checkoutButton.addEventListener('click', function () {
+                            console.log(selectedNumberOfExtras);
+
+                            stripe.redirectToCheckout({
+                                lineItems: [{ price: stripeCheckoutPriceCode.largeBaseMonthly, quantity: 1 }],
+                                mode: 'subscription',
+                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
+                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                            })
+                                .then(function (result) {
+                                    if (result.error) {
+                                        /*
+                                         * If `redirectToCheckout` fails due to a browser or network
+                                         * error, display the localized error message to your customer.
+                                         */
+                                        var displayError = document.getElementById('error-message');
+                                        displayError.textContent = result.error.message;
+                                    }
+                                });
+                        });
+                    }
+                   
+                    break;
+    
+            }
 
         }
     }
