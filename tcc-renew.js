@@ -1,6 +1,6 @@
 $(function () {
 
-    var stripe = Stripe('pk_test_51H7AHJAbOHXxPX3zcepgLQRJoWGR95z9TvRx5Rv8sazgZJcDr2X8HAPQhDtziCrnIidRnYPFYMDsutkREvqkM1vE00TC2eeym1');
+    var stripe = Stripe('pk_test_E1z8Bu15MYOOPyWRigo1gjLk00ULMn11wW');
     var checkoutButton = document.getElementById('checkout-button');
 
 
@@ -85,23 +85,23 @@ $(function () {
     }
 
     var stripeCheckoutPriceCode = {
-        individualBaseMonthly: "price_1KbFyLAbOHXxPX3ztkfYL7MY",
-        smallBaseMonthly: "price_1KbG6YAbOHXxPX3ze5I4MLgI",
-        mediumBaseMonthly:"price_1KbKAOAbOHXxPX3zp7WRuppx",
-        largeBaseMonthly:"price_1KbKCwAbOHXxPX3zTOj2LX1L",
+        individualBaseMonthly: "price_1KdnMzLGwAXHXsFBEaXvSUPQ",
+        smallBaseMonthly: "price_1KdnMzLGwAXHXsFBgV12ao5y",
+        mediumBaseMonthly:"price_1KdnMzLGwAXHXsFBAdkprUBz",
+        largeBaseMonthly:"price_1KdnMzLGwAXHXsFB0VXE73Fv",
 
-        individualBaseAnnual: "price_1KbFyLAbOHXxPX3zl3DiKJ50",
-        smallBaseAnnual: "price_1KbGEQAbOHXxPX3zjmGvwlEq",
-        mediumBaseAnnual: "price_1KbKBdAbOHXxPX3zOyXt5orm",
-        largeBaseAnnual: "price_1KbKDlAbOHXxPX3zk4PAlLbT",
+        individualBaseAnnual: "price_1KdnMzLGwAXHXsFBUEcDiZXw",
+        smallBaseAnnual: "price_1KdnMzLGwAXHXsFBA8dwvv2m",
+        mediumBaseAnnual: "price_1KdnMzLGwAXHXsFBShdUP9py",
+        largeBaseAnnual: "price_1KdnMzLGwAXHXsFBcFpRBoll",
 
-        smallExtraMonthly: "price_1KbG9GAbOHXxPX3z2VsxWFUl",
-        mediumExtraMonthly:"price_1KbKAnAbOHXxPX3znL4AKGXU",
-        largeExtraMonthly:"price_1KbKDHAbOHXxPX3zYK2iJYRT",
+        smallExtraMonthly: "price_1KdnQlLGwAXHXsFBFS5HPeCm",
+        mediumExtraMonthly:"price_1KdnQlLGwAXHXsFBj6DQwScz",
+        largeExtraMonthly:"price_1KdnQlLGwAXHXsFBCLNG9sWV",
 
-        smallExtraAnnual: "price_1KbK8wAbOHXxPX3z0EwYmMb9",
-        mediumExtraAnnual:"price_1KbKC1AbOHXxPX3zb1JEiQxV",
-        largeExtraAnnual:"price_1KbKE8AbOHXxPX3zS4NJK3UB"
+        smallExtraAnnual: "price_1KdnQlLGwAXHXsFBwcr0B3II",
+        mediumExtraAnnual:"price_1KdnQlLGwAXHXsFBDDzTgiRR",
+        largeExtraAnnual:"price_1KdnQlLGwAXHXsFBuz2ha1uo"
     }
 
 
