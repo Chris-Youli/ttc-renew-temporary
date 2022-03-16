@@ -299,8 +299,8 @@ $(function () {
                         stripe.redirectToCheckout({
                             lineItems: [{ price: stripeCheckoutPriceCode.individualBaseAnnual, quantity: 1 }],
                             mode: 'subscription',
-                            successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                            cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
+                            successUrl: window.location.protocol + '//transformational.travel/success',
+                            cancelUrl: window.location.protocol + '//transformational.travel/canceled',
                             shippingAddressCollection: {
                                 allowedCountries: ['US', 'CA', 'AU', 'CN'],
                             }
@@ -327,8 +327,8 @@ $(function () {
                                 lineItems: [{ price: stripeCheckoutPriceCode.smallBaseAnnual, quantity: 1 },
                                 {price: stripeCheckoutPriceCode.smallExtraAnnual, quantity: parseInt(selectedNumberOfExtras)}],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled',
                                 shippingAddressCollection: {
                                     allowedCountries: ['US', 'CA', 'AU', 'CN'],
                                 }
@@ -351,8 +351,8 @@ $(function () {
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.smallBaseAnnual, quantity: 1 }],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled',
                                 shippingAddressCollection: {
                                     allowedCountries: ['US', 'CA', 'AU', 'CN'],
                                 }
@@ -381,8 +381,8 @@ $(function () {
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 },
                                 {price: stripeCheckoutPriceCode.mediumExtraAnnual, quantity: parseInt(selectedNumberOfExtras)}],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled',
                                 shippingAddressCollection: {
                                     allowedCountries: ['US', 'CA', 'AU', 'CN'],
                                 }
@@ -405,8 +405,8 @@ $(function () {
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 }],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled',
                                 shippingAddressCollection: {
                                     allowedCountries: ['US', 'CA', 'AU', 'CN'],
                                 }
@@ -435,8 +435,8 @@ $(function () {
                                 lineItems: [{ price: stripeCheckoutPriceCode.largeBaseAnnual, quantity: 1 },
                                 {price: stripeCheckoutPriceCode.largeExtraAnnual, quantity: parseInt(selectedNumberOfExtras)}],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled',
                                 shippingAddressCollection: {
                                     allowedCountries: ['US', 'CA', 'AU', 'CN'],
                                 }
@@ -459,8 +459,8 @@ $(function () {
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.largeBaseAnnual, quantity: 1 }],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription',
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled',
                                 shippingAddressCollection: {
                                     allowedCountries: ['US', 'CA', 'AU', 'CN'],
                                 }
@@ -488,8 +488,8 @@ $(function () {
                         stripe.redirectToCheckout({
                             lineItems: [{ price: stripeCheckoutPriceCode.individualBaseMonthly, quantity: 1 }],
                             mode: 'subscription',
-                            successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                            cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                            successUrl: window.location.protocol + '//transformational.travel/success',
+                            cancelUrl: window.location.protocol + '//transformational.travel/canceled'
                         })
                             .then(function (result) {
                                 if (result.error) {
@@ -513,8 +513,8 @@ $(function () {
                                 lineItems: [{ price: stripeCheckoutPriceCode.smallBaseMonthly, quantity: 1 },
                                 {price: stripeCheckoutPriceCode.smallExtraMonthly, quantity: parseInt(selectedNumberOfExtras)}],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled'
                             })
                                 .then(function (result) {
                                     if (result.error) {
@@ -534,8 +534,8 @@ $(function () {
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.smallBaseMonthly, quantity: 1 }],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled'
                             })
                                 .then(function (result) {
                                     if (result.error) {
@@ -561,8 +561,8 @@ $(function () {
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseMonthly, quantity: 1 },
                                 {price: stripeCheckoutPriceCode.mediumExtraMonthly, quantity: parseInt(selectedNumberOfExtras)}],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled'
                             })
                                 .then(function (result) {
                                     if (result.error) {
@@ -582,8 +582,8 @@ $(function () {
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseMonthly, quantity: 1 }],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled'
                             })
                                 .then(function (result) {
                                     if (result.error) {
@@ -609,8 +609,8 @@ $(function () {
                                 lineItems: [{ price: stripeCheckoutPriceCode.largeBaseMonthly, quantity: 1 },
                                 {price: stripeCheckoutPriceCode.largeExtraMonthly, quantity: parseInt(selectedNumberOfExtras)}],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled'
                             })
                                 .then(function (result) {
                                     if (result.error) {
@@ -630,8 +630,8 @@ $(function () {
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.largeBaseMonthly, quantity: 1 }],
                                 mode: 'subscription',
-                                successUrl: window.location.protocol + '//xiaotian35.com/subscription/success',
-                                cancelUrl: window.location.protocol + '//youli-2021-relaunch.webflow.io/pricing-subscription'
+                                successUrl: window.location.protocol + '//transformational.travel/success',
+                                cancelUrl: window.location.protocol + '//transformational.travel/canceled'
                             })
                                 .then(function (result) {
                                     if (result.error) {
