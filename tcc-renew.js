@@ -55,7 +55,7 @@ $(function () {
     }
 
     var subscriptionBaseCost = {
-        individualMonthly: 16.5,
+        individualMonthly: 16.50,
         smallMonthly: 37,
         mediumMonthly: 69,
         largeMonthly: 184,
@@ -169,7 +169,7 @@ $(function () {
                 selectedNumberOfExtras = numberSelected;
                 
             }else{
-                selectedNumberOfExtras = 0
+                selectedNumberOfExtras = 0;
             }
             updateCheckoutPanel();
 
@@ -400,7 +400,7 @@ $(function () {
                         });
                     }else{
                         checkoutButton.addEventListener('click', function () {
-                            console.log(selectedNumberOfExtras);
+                            // console.log(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 }],
