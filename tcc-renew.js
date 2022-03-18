@@ -1,7 +1,9 @@
 $(function () {
 
     var stripe = Stripe('pk_test_E1z8Bu15MYOOPyWRigo1gjLk00ULMn11wW');
-    var checkoutButton = document.getElementById('checkout-button');
+    // var checkoutButton = document.getElementById('checkout-button');
+    var checkoutButton = $('#checkout-button');
+
 
 
     var uiStorage = {
