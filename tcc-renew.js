@@ -323,9 +323,11 @@ $(function () {
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.addEventListener('click', function () {
                             console.log(selectedNumberOfExtras);
+                            var extraQuantity = Number(selectedNumberOfExtras);
+
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.smallBaseAnnual, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.smallExtraAnnual, quantity: parseInt(selectedNumberOfExtras)}],
+                                {price: stripeCheckoutPriceCode.smallExtraAnnual, quantity: extraQuantity}],
                                 mode: 'subscription',
                                 successUrl: window.location.protocol + '//transformational.travel/success',
                                 cancelUrl: window.location.protocol + '//transformational.travel/canceled',
@@ -376,10 +378,11 @@ $(function () {
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.addEventListener('click', function () {
                             console.log(selectedNumberOfExtras);
+                            var extraQuantity = Number(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.mediumExtraAnnual, quantity: parseInt(selectedNumberOfExtras)}],
+                                {price: stripeCheckoutPriceCode.mediumExtraAnnual, quantity: extraQuantity}],
                                 mode: 'subscription',
                                 successUrl: window.location.protocol + '//transformational.travel/success',
                                 cancelUrl: window.location.protocol + '//transformational.travel/canceled',
@@ -431,9 +434,11 @@ $(function () {
                         checkoutButton.addEventListener('click', function () {
                             console.log(selectedNumberOfExtras);
 
+                            var extraQuantity = Number(selectedNumberOfExtras);
+
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.largeBaseAnnual, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.largeExtraAnnual, quantity: parseInt(selectedNumberOfExtras)}],
+                                {price: stripeCheckoutPriceCode.largeExtraAnnual, quantity: extraQuantity}],
                                 mode: 'subscription',
                                 successUrl: window.location.protocol + '//transformational.travel/success',
                                 cancelUrl: window.location.protocol + '//transformational.travel/canceled',
@@ -509,9 +514,11 @@ $(function () {
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.addEventListener('click', function () {
                             console.log(selectedNumberOfExtras);
+                            var extraQuantity = Number(selectedNumberOfExtras);
+                            
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.smallBaseMonthly, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.smallExtraMonthly, quantity: parseInt(selectedNumberOfExtras)}],
+                                {price: stripeCheckoutPriceCode.smallExtraMonthly, quantity: extraQuantity}],
                                 mode: 'subscription',
                                 successUrl: window.location.protocol + '//transformational.travel/success',
                                 cancelUrl: window.location.protocol + '//transformational.travel/canceled'
@@ -556,10 +563,11 @@ $(function () {
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.addEventListener('click', function () {
                             console.log(selectedNumberOfExtras);
+                            var extraQuantity = Number(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseMonthly, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.mediumExtraMonthly, quantity: parseInt(selectedNumberOfExtras)}],
+                                {price: stripeCheckoutPriceCode.mediumExtraMonthly, quantity: extraQuantity}],
                                 mode: 'subscription',
                                 successUrl: window.location.protocol + '//transformational.travel/success',
                                 cancelUrl: window.location.protocol + '//transformational.travel/canceled'
@@ -604,10 +612,11 @@ $(function () {
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.addEventListener('click', function () {
                             console.log(selectedNumberOfExtras);
+                            var extraQuantity = Number(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.largeBaseMonthly, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.largeExtraMonthly, quantity: parseInt(selectedNumberOfExtras)}],
+                                {price: stripeCheckoutPriceCode.largeExtraMonthly, quantity: extraQuantity}],
                                 mode: 'subscription',
                                 successUrl: window.location.protocol + '//transformational.travel/success',
                                 cancelUrl: window.location.protocol + '//transformational.travel/canceled'
