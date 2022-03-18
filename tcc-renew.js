@@ -315,7 +315,9 @@ $(function () {
         if(isSwitchedToAnnual){
             switch (selectedPlan){
                 case selectedPlanOptions.individual:
-                    checkoutButton.addEventListener('click', function () {
+
+
+                    checkoutButton.on("click", function () {
                         stripe.redirectToCheckout({
                             lineItems: [{ price: stripeCheckoutPriceCode.individualBaseAnnual, quantity: 1 }],
                             mode: 'subscription',
@@ -336,12 +338,12 @@ $(function () {
                                 }
                             });
                     });
-                    
+                  
                     break;
     
                 case selectedPlanOptions.small:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
                             var extraQuantity = Number(selectedNumberOfExtras);
 
@@ -367,7 +369,7 @@ $(function () {
                                 });
                         });
                     }else{
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
@@ -396,7 +398,7 @@ $(function () {
     
                 case selectedPlanOptions.medium:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
                             var extraQuantity = Number(selectedNumberOfExtras);
 
@@ -422,7 +424,7 @@ $(function () {
                                 });
                         });
                     }else{
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             // console.log(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
@@ -451,7 +453,7 @@ $(function () {
     
                 case selectedPlanOptions.large:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
 
                             var extraQuantity = Number(selectedNumberOfExtras);
@@ -478,7 +480,7 @@ $(function () {
                                 });
                         });
                     }else{
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
@@ -509,7 +511,7 @@ $(function () {
         }else{
             switch (selectedPlan){
                 case selectedPlanOptions.individual:
-                    checkoutButton.addEventListener('click', function () {
+                    checkoutButton.on("click", function () {
                         stripe.redirectToCheckout({
                             lineItems: [{ price: stripeCheckoutPriceCode.individualBaseMonthly, quantity: 1 }],
                             mode: 'subscription',
@@ -532,7 +534,7 @@ $(function () {
     
                 case selectedPlanOptions.small:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
                             var extraQuantity = Number(selectedNumberOfExtras);
                             
@@ -555,7 +557,7 @@ $(function () {
                                 });
                         });
                     }else{
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
@@ -581,7 +583,7 @@ $(function () {
     
                 case selectedPlanOptions.medium:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
                             var extraQuantity = Number(selectedNumberOfExtras);
 
@@ -604,7 +606,7 @@ $(function () {
                                 });
                         });
                     }else{
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
@@ -630,7 +632,7 @@ $(function () {
     
                 case selectedPlanOptions.large:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
                             var extraQuantity = Number(selectedNumberOfExtras);
 
@@ -653,7 +655,7 @@ $(function () {
                                 });
                         });
                     }else{
-                        checkoutButton.addEventListener('click', function () {
+                        checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
