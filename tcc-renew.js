@@ -179,7 +179,7 @@ $(function () {
 
     uiStorage.packageCardExtraSelector.each(function (){
         $(this).change(function(){
-            var numberSelected = Number($(this).val());
+            var numberSelected = parseInt($(this).val());
             if(numberSelected >= 0){
                 selectedNumberOfExtras = numberSelected;
                 
@@ -347,7 +347,7 @@ $(function () {
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
-                            var extraQuantity = Number(selectedNumberOfExtras);
+                            var extraQuantity = parseInt(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.smallBaseAnnual, quantity: 1 },
@@ -402,7 +402,7 @@ $(function () {
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
-                            var extraQuantity = Number(selectedNumberOfExtras);
+                            var extraQuantity = parseInt(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 },
@@ -458,7 +458,7 @@ $(function () {
                         checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
 
-                            var extraQuantity = Number(selectedNumberOfExtras);
+                            var extraQuantity = parseInt(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.largeBaseAnnual, quantity: 1 },
@@ -538,7 +538,7 @@ $(function () {
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
-                            var extraQuantity = Number(selectedNumberOfExtras);
+                            var extraQuantity = parseInt(selectedNumberOfExtras);
                             
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.smallBaseMonthly, quantity: 1 },
@@ -587,7 +587,7 @@ $(function () {
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
-                            var extraQuantity = Number(selectedNumberOfExtras);
+                            var extraQuantity = parseInt(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseMonthly, quantity: 1 },
@@ -636,7 +636,7 @@ $(function () {
                     if(selectedNumberOfExtras != 0){
                         checkoutButton.on("click", function () {
                             console.log(selectedNumberOfExtras);
-                            var extraQuantity = Number(selectedNumberOfExtras);
+                            var extraQuantity = parseInt(selectedNumberOfExtras);
 
                             stripe.redirectToCheckout({
                                 lineItems: [{ price: stripeCheckoutPriceCode.largeBaseMonthly, quantity: 1 },
