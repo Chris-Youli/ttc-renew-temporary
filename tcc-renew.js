@@ -17,6 +17,7 @@ $(function () {
         checkoutPanelExtraAmount: $("#ttc-renew-checkout-extra-amount"),
         checkoutPanelTotal: $("#ttc-renew-checkout-total"),
         checkoutPanelBillingPeriod: $("#ttc-checkout-billing-period-label"),
+        checkoutPanelTotalAmountCharge: $('#ttc-renew-checkout-total-amount-charge'),
 
         packageCardPriceIndividual:$("#ttc-renew-card-price-individual"),
         packageCardPriceSmall:$("#ttc-renew-card-price-small"),
@@ -244,6 +245,7 @@ $(function () {
                     (0)
                     ); 
                 uiStorage.checkoutPanelTotal.html(calculateTotalAmount);
+                uiStorage.checkoutPanelTotalAmountCharge.html(calculateTotalAmount);
                 uiStorage.checkoutPanelBillingPeriod.html(isSwitchedToAnnual? "yr": "mth");
 
                  
@@ -260,6 +262,8 @@ $(function () {
                     (isSwitchedToAnnual? subscriptionExtraCost.smallAnnual: subscriptionExtraCost.smallMonthly)
                     ); 
                 uiStorage.checkoutPanelTotal.html(calculateTotalAmount);
+                uiStorage.checkoutPanelTotalAmountCharge.html(calculateTotalAmount);
+
                 uiStorage.checkoutPanelBillingPeriod.html(isSwitchedToAnnual? "yr": "mth");
 
                 setCheckoutButtonRedirect();
@@ -275,6 +279,8 @@ $(function () {
                     (isSwitchedToAnnual? subscriptionExtraCost.mediumAnnual: subscriptionExtraCost.mediumMonthly)
                     ); 
                 uiStorage.checkoutPanelTotal.html(calculateTotalAmount);  
+                uiStorage.checkoutPanelTotalAmountCharge.html(calculateTotalAmount);
+
                 uiStorage.checkoutPanelBillingPeriod.html(isSwitchedToAnnual? "yr": "mth");
                 setCheckoutButtonRedirect();
                 break;
@@ -288,6 +294,8 @@ $(function () {
                     (isSwitchedToAnnual? subscriptionExtraCost.largeAnnual: subscriptionExtraCost.largeMonthly)
                     ); 
                 uiStorage.checkoutPanelTotal.html(calculateTotalAmount); 
+                uiStorage.checkoutPanelTotalAmountCharge.html(calculateTotalAmount);
+
                 uiStorage.checkoutPanelBillingPeriod.html(isSwitchedToAnnual? "yr": "mth");
                 setCheckoutButtonRedirect(); 
                 break;
