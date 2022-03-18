@@ -138,14 +138,14 @@ $(function () {
             frequencyToggleDot.css({ float: "right" });
             isSwitchedToAnnual = false;
 
-            uiStorage.packageCardPriceIndividual.html("15");
-            uiStorage.packageCardPriceSmall.html("33");
-            uiStorage.packageCardPriceMedium.html("62");
-            uiStorage.packageCardPriceLarge.html("167");
+            uiStorage.packageCardPriceIndividual.html(subscriptionBaseCost.individualMonthly);
+            uiStorage.packageCardPriceSmall.html(subscriptionBaseCost.smallMonthly);
+            uiStorage.packageCardPriceMedium.html(subscriptionBaseCost.mediumMonthly);
+            uiStorage.packageCardPriceLarge.html(subscriptionBaseCost.largeMonthly);
 
-            uiStorage.packageCardPerExtraSmall.html("3");
-            uiStorage.packageCardPerExtraMedium.html("6");
-            uiStorage.packageCardPerExtraLarge.html("17");
+            uiStorage.packageCardPerExtraSmall.html(subscriptionExtraCost.smallMonthly);
+            uiStorage.packageCardPerExtraMedium.html(subscriptionExtraCost.mediumMonthly);
+            uiStorage.packageCardPerExtraLarge.html(subscriptionExtraCost.largeMonthly);
 
             uiStorage.packageCardBillingFrequencyText.each(function() {
                 $(this).html("Your annual commitment billed month to month.");
@@ -156,14 +156,16 @@ $(function () {
             frequencyToggleDot.css({ float: "left" });
             isSwitchedToAnnual = true;
 
-            uiStorage.packageCardPriceIndividual.html(subscriptionBaseCost.individualAnnual);
-            uiStorage.packageCardPriceSmall.html(subscriptionBaseCost.smallAnnual);
-            uiStorage.packageCardPriceMedium.html(subscriptionBaseCost.mediumAnnual);
-            uiStorage.packageCardPriceLarge.html(subscriptionBaseCost.largeAnnual);
 
-            uiStorage.packageCardPerExtraSmall.html(subscriptionExtraCost.smallAnnual);
-            uiStorage.packageCardPerExtraMedium.html(subscriptionExtraCost.mediumAnnual);
-            uiStorage.packageCardPerExtraLarge.html(subscriptionExtraCost.largeAnnual);
+
+            uiStorage.packageCardPriceIndividual.html("15");
+            uiStorage.packageCardPriceSmall.html("33");
+            uiStorage.packageCardPriceMedium.html("62");
+            uiStorage.packageCardPriceLarge.html("167");
+
+            uiStorage.packageCardPerExtraSmall.html("3");
+            uiStorage.packageCardPerExtraMedium.html("6");
+            uiStorage.packageCardPerExtraLarge.html("17");
 
             uiStorage.packageCardBillingFrequencyText.each(function() {
                 $(this).html("Your annual commitment billed annually.");
