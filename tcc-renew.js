@@ -21,6 +21,27 @@ $(function () {
         checkoutPanelBillingPeriod: $("#ttc-checkout-billing-period-label"),
         checkoutPanelTotalAmountCharge: $('#ttc-renew-checkout-total-amount-charge'),
 
+
+
+        checkoutButtonIndividualAnnual: $('#ttc-renew-checkout-individual-annual'),
+        checkoutButtonSmallAnnualExtra: $('#ttc-renew-checkout-small-annual-extra'),
+        checkoutButtonSmallAnnual: $('#ttc-renew-checkout-small-annual'),
+        checkoutButtonMediumAnnualExtra: $('#ttc-renew-checkout-medium-annual-extra'),
+        checkoutButtonMediumAnnual: $('#ttc-renew-checkout-medium-annual'),
+        checkoutButtonLargeAnnualExtra: $('#ttc-renew-checkout-large-annual-extra'),
+        checkoutButtonLargeAnnual: $('#ttc-renew-checkout-large-annual'),
+        
+        checkoutButtonIndividualMonthly: $('#ttc-renew-checkout-individual-monthly'),
+        checkoutButtonSmallMonthlyExtra: $('#ttc-renew-checkout-small-monthly-extra'),
+        checkoutButtonSmallMonthly: $('#ttc-renew-checkout-small-monthly'),
+        checkoutButtonMediumMonthlyExtra: $('#ttc-renew-checkout-medium-monthly-extra'),
+        checkoutButtonMediumMonthly: $('#ttc-renew-checkout-medium-monthly'),
+        checkoutButtonLargeMonthlyExtra: $('#ttc-renew-checkout-large-monthly-extra'),
+        checkoutButtonLargeMonthly: $('#ttc-renew-checkout-large-monthly'),
+
+
+
+
         packageCardPriceIndividual:$("#ttc-renew-card-price-individual"),
         packageCardPriceSmall:$("#ttc-renew-card-price-small"),
         packageCardPriceMedium:$("#ttc-renew-card-price-medium"),
@@ -116,6 +137,331 @@ $(function () {
 
     var selectedPlan = selectedPlanOptions.individual;
     var isSwitchedToAnnual = true;
+
+    uiStorage.checkoutButtonIndividualAnnual.on("click", function () {
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.individualBaseAnnual, quantity: 1 }],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
+            shippingAddressCollection: {
+                allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
+            }
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonSmallAnnualExtra.on("click", function () {
+        console.log(selectedNumberOfExtras);
+        var extraQuantity = parseInt(selectedNumberOfExtras);
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.smallBaseAnnual, quantity: 1 },
+            {price: stripeCheckoutPriceCode.smallExtraAnnual, quantity: extraQuantity}],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
+            shippingAddressCollection: {
+                allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
+            }
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+
+    uiStorage.checkoutButtonSmallAnnual.on("click", function () {
+        console.log(selectedNumberOfExtras);
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.smallBaseAnnual, quantity: 1 }],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
+            shippingAddressCollection: {
+                allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
+            }
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonMediumAnnualExtra.on("click", function () {
+        console.log(selectedNumberOfExtras);
+        var extraQuantity = parseInt(selectedNumberOfExtras);
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 },
+            {price: stripeCheckoutPriceCode.mediumExtraAnnual, quantity: extraQuantity}],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
+            shippingAddressCollection: {
+                allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
+            }
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonMediumAnnual.on("click", function () {
+                            
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 }],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
+            shippingAddressCollection: {
+                allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
+            }
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonLargeAnnualExtra.on("click", function () {
+        console.log(selectedNumberOfExtras);
+
+        var extraQuantity = parseInt(selectedNumberOfExtras);
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.largeBaseAnnual, quantity: 1 },
+            {price: stripeCheckoutPriceCode.largeExtraAnnual, quantity: extraQuantity}],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
+            shippingAddressCollection: {
+                allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
+            }
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonLargeAnnual.on("click", function () {
+        console.log(selectedNumberOfExtras);
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.largeBaseAnnual, quantity: 1 }],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
+            shippingAddressCollection: {
+                allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
+            }
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonIndividualMonthly.on("click", function () {
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.individualBaseMonthly, quantity: 1 }],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonSmallMonthlyExtra.on("click", function () {
+        console.log(selectedNumberOfExtras);
+        var extraQuantity = parseInt(selectedNumberOfExtras);
+        
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.smallBaseMonthly, quantity: 1 },
+            {price: stripeCheckoutPriceCode.smallExtraMonthly, quantity: extraQuantity}],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonSmallMonthly.on("click", function () {
+        console.log(selectedNumberOfExtras);
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.smallBaseMonthly, quantity: 1 }],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonMediumMonthlyExtra.on("click", function () {
+        console.log(selectedNumberOfExtras);
+        var extraQuantity = parseInt(selectedNumberOfExtras);
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseMonthly, quantity: 1 },
+            {price: stripeCheckoutPriceCode.mediumExtraMonthly, quantity: extraQuantity}],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonMediumMonthly.on("click", function () {
+        console.log(selectedNumberOfExtras);
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseMonthly, quantity: 1 }],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonLargeMonthlyExtra.on("click", function () {
+        console.log(selectedNumberOfExtras);
+        var extraQuantity = parseInt(selectedNumberOfExtras);
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.largeBaseMonthly, quantity: 1 },
+            {price: stripeCheckoutPriceCode.largeExtraMonthly, quantity: extraQuantity}],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
+
+    uiStorage.checkoutButtonLargeMonthly.on("click", function () {
+        console.log(selectedNumberOfExtras);
+
+        stripe.redirectToCheckout({
+            lineItems: [{ price: stripeCheckoutPriceCode.largeBaseMonthly, quantity: 1 }],
+            mode: 'subscription',
+            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
+            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
+        })
+            .then(function (result) {
+                if (result.error) {
+                    /*
+                     * If `redirectToCheckout` fails due to a browser or network
+                     * error, display the localized error message to your customer.
+                     */
+                    var displayError = document.getElementById('error-message');
+                    displayError.textContent = result.error.message;
+                }
+            });
+    });
 
 
 
@@ -313,198 +659,155 @@ $(function () {
         return totalAmount;
     }
 
+
+
+
+
+
     var setCheckoutButtonRedirect = function(){
         if(isSwitchedToAnnual){
             switch (selectedPlan){
                 case selectedPlanOptions.individual:
+                    //individual annual
 
+                    uiStorage.checkoutButtonIndividualAnnual.show();
+                    uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                    uiStorage.checkoutButtonSmallAnnual.hide();
+                    uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                    uiStorage.checkoutButtonMediumAnnual.hide();
+                    uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                    uiStorage.checkoutButtonLargeAnnual.hide();
 
-                    checkoutButton.on("click", function () {
-                        stripe.redirectToCheckout({
-                            lineItems: [{ price: stripeCheckoutPriceCode.individualBaseAnnual, quantity: 1 }],
-                            mode: 'subscription',
-                            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
-                            shippingAddressCollection: {
-                                allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
-                            }
-                        })
-                            .then(function (result) {
-                                if (result.error) {
-                                    /*
-                                     * If `redirectToCheckout` fails due to a browser or network
-                                     * error, display the localized error message to your customer.
-                                     */
-                                    var displayError = document.getElementById('error-message');
-                                    displayError.textContent = result.error.message;
-                                }
-                            });
-                    });
-                  
+                    uiStorage.checkoutButtonIndividualMonthly.hide();
+                    uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                    uiStorage.checkoutButtonSmallMonthly.hide();
+                    uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                    uiStorage.checkoutButtonMediumMonthly.hide();
+                    uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                    uiStorage.checkoutButtonLargeMonthly.hide();
+               
                     break;
     
                 case selectedPlanOptions.small:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.on("click", function () {
-                            console.log(selectedNumberOfExtras);
-                            var extraQuantity = parseInt(selectedNumberOfExtras);
+                        //small annual extra
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.show();
+                        uiStorage.checkoutButtonSmallAnnual.hide();
+                        uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                        uiStorage.checkoutButtonMediumAnnual.hide();
+                        uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                        uiStorage.checkoutButtonLargeAnnual.hide();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                        uiStorage.checkoutButtonSmallMonthly.hide();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                        uiStorage.checkoutButtonMediumMonthly.hide();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                        uiStorage.checkoutButtonLargeMonthly.hide();
 
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.smallBaseAnnual, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.smallExtraAnnual, quantity: extraQuantity}],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
-                                shippingAddressCollection: {
-                                    allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
-                                }
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
+
                     }else{
-                        checkoutButton.on("click", function () {
-                            console.log(selectedNumberOfExtras);
-
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.smallBaseAnnual, quantity: 1 }],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
-                                shippingAddressCollection: {
-                                    allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
-                                }
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
+                        //small annual
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                        uiStorage.checkoutButtonSmallAnnual.show();
+                        uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                        uiStorage.checkoutButtonMediumAnnual.hide();
+                        uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                        uiStorage.checkoutButtonLargeAnnual.hide();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                        uiStorage.checkoutButtonSmallMonthly.hide();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                        uiStorage.checkoutButtonMediumMonthly.hide();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                        uiStorage.checkoutButtonLargeMonthly.hide();
                     }
                    
                     break;
     
                 case selectedPlanOptions.medium:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.on("click", function () {
-                            console.log(selectedNumberOfExtras);
-                            var extraQuantity = parseInt(selectedNumberOfExtras);
+                        //medium annual extra 
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                        uiStorage.checkoutButtonSmallAnnual.hide();
+                        uiStorage.checkoutButtonMediumAnnualExtra.show();
+                        uiStorage.checkoutButtonMediumAnnual.hide();
+                        uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                        uiStorage.checkoutButtonLargeAnnual.hide();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                        uiStorage.checkoutButtonSmallMonthly.hide();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                        uiStorage.checkoutButtonMediumMonthly.hide();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                        uiStorage.checkoutButtonLargeMonthly.hide();
 
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.mediumExtraAnnual, quantity: extraQuantity}],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
-                                shippingAddressCollection: {
-                                    allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
-                                }
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
                     }else{
-                        checkoutButton.on("click", function () {
-                            // console.log(selectedNumberOfExtras);
+                        //medium annual
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                        uiStorage.checkoutButtonSmallAnnual.hide();
+                        uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                        uiStorage.checkoutButtonMediumAnnual.show();
+                        uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                        uiStorage.checkoutButtonLargeAnnual.hide();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                        uiStorage.checkoutButtonSmallMonthly.hide();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                        uiStorage.checkoutButtonMediumMonthly.hide();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                        uiStorage.checkoutButtonLargeMonthly.hide();
 
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseAnnual, quantity: 1 }],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
-                                shippingAddressCollection: {
-                                    allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
-                                }
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
                     }
                     
                     break;
     
                 case selectedPlanOptions.large:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.on("click", function () {
-                            console.log(selectedNumberOfExtras);
+                        //large annual extra
 
-                            var extraQuantity = parseInt(selectedNumberOfExtras);
-
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.largeBaseAnnual, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.largeExtraAnnual, quantity: extraQuantity}],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
-                                shippingAddressCollection: {
-                                    allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
-                                }
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                        uiStorage.checkoutButtonSmallAnnual.hide();
+                        uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                        uiStorage.checkoutButtonMediumAnnual.hide();
+                        uiStorage.checkoutButtonLargeAnnualExtra.show();
+                        uiStorage.checkoutButtonLargeAnnual.hide();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                        uiStorage.checkoutButtonSmallMonthly.hide();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                        uiStorage.checkoutButtonMediumMonthly.hide();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                        uiStorage.checkoutButtonLargeMonthly.hide();
+           
                     }else{
-                        checkoutButton.on("click", function () {
-                            console.log(selectedNumberOfExtras);
-
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.largeBaseAnnual, quantity: 1 }],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed',
-                                shippingAddressCollection: {
-                                    allowedCountries: ["AC", "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CV", "CW", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES", "ET", "FI", "FJ", "FK", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HN", "HR", "HT", "HU", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA", "MC", "MD", "ME", "MF", "MG", "MK", "ML", "MM", "MN", "MO", "MQ", "MR", "MS", "MT", "MU", "MV", "MW", "MX", "MY", "MZ", "NA", "NC", "NE", "NG", "NI", "NL", "NO", "NP", "NR", "NU", "NZ", "OM", "PA", "PE", "PF", "PG", "PH", "PK", "PL", "PM", "PN", "PR", "PS", "PT", "PY", "QA", "RE", "RO", "RS", "RU", "RW", "SA", "SB", "SC", "SE", "SG", "SH", "SI", "SJ", "SK", "SL", "SM", "SN", "SO", "SR", "SS", "ST", "SV", "SX", "SZ", "TA", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", "TM", "TN", "TO", "TR", "TT", "TV", "TW", "TZ", "UA", "UG", "US", "UY", "UZ", "VA", "VC", "VE", "VG", "VN", "VU", "WF", "WS", "XK", "YE", "YT", "ZA", "ZM", "ZW", "ZZ"],
-                                }
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
+                        //large annual
+ 
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                        uiStorage.checkoutButtonSmallAnnual.hide();
+                        uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                        uiStorage.checkoutButtonMediumAnnual.hide();
+                        uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                        uiStorage.checkoutButtonLargeAnnual.show();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                        uiStorage.checkoutButtonSmallMonthly.hide();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                        uiStorage.checkoutButtonMediumMonthly.hide();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                        uiStorage.checkoutButtonLargeMonthly.hide();
                     }
                    
                     break;
@@ -513,170 +816,145 @@ $(function () {
         }else{
             switch (selectedPlan){
                 case selectedPlanOptions.individual:
-                    checkoutButton.on("click", function () {
-                        stripe.redirectToCheckout({
-                            lineItems: [{ price: stripeCheckoutPriceCode.individualBaseMonthly, quantity: 1 }],
-                            mode: 'subscription',
-                            successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                            cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
-                        })
-                            .then(function (result) {
-                                if (result.error) {
-                                    /*
-                                     * If `redirectToCheckout` fails due to a browser or network
-                                     * error, display the localized error message to your customer.
-                                     */
-                                    var displayError = document.getElementById('error-message');
-                                    displayError.textContent = result.error.message;
-                                }
-                            });
-                    });
-                    
+                    //individual monthly
+                    uiStorage.checkoutButtonIndividualAnnual.hide();
+                    uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                    uiStorage.checkoutButtonSmallAnnual.hide();
+                    uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                    uiStorage.checkoutButtonMediumAnnual.hide();
+                    uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                    uiStorage.checkoutButtonLargeAnnual.hide();
+
+                    uiStorage.checkoutButtonIndividualMonthly.show();
+                    uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                    uiStorage.checkoutButtonSmallMonthly.hide();
+                    uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                    uiStorage.checkoutButtonMediumMonthly.hide();
+                    uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                    uiStorage.checkoutButtonLargeMonthly.hide();
+
                     break;
     
                 case selectedPlanOptions.small:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.on("click", function () {
-                            console.log(selectedNumberOfExtras);
-                            var extraQuantity = parseInt(selectedNumberOfExtras);
-                            
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.smallBaseMonthly, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.smallExtraMonthly, quantity: extraQuantity}],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
-                    }else{
-                        checkoutButton.on("click", function () {
-                            console.log(selectedNumberOfExtras);
+                        //small monthly extra
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                        uiStorage.checkoutButtonSmallAnnual.hide();
+                        uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                        uiStorage.checkoutButtonMediumAnnual.hide();
+                        uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                        uiStorage.checkoutButtonLargeAnnual.hide();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.show();
+                        uiStorage.checkoutButtonSmallMonthly.hide();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                        uiStorage.checkoutButtonMediumMonthly.hide();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                        uiStorage.checkoutButtonLargeMonthly.hide();
 
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.smallBaseMonthly, quantity: 1 }],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
+                    }else{
+                        //small monthly
+
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                        uiStorage.checkoutButtonSmallAnnual.hide();
+                        uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                        uiStorage.checkoutButtonMediumAnnual.hide();
+                        uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                        uiStorage.checkoutButtonLargeAnnual.hide();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                        uiStorage.checkoutButtonSmallMonthly.show();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                        uiStorage.checkoutButtonMediumMonthly.hide();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                        uiStorage.checkoutButtonLargeMonthly.hide();
+
                     }
                    
                     break;
     
                 case selectedPlanOptions.medium:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.on("click", function () {
-                            console.log(selectedNumberOfExtras);
-                            var extraQuantity = parseInt(selectedNumberOfExtras);
-
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseMonthly, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.mediumExtraMonthly, quantity: extraQuantity}],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
+                        //medium monthly extra
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                        uiStorage.checkoutButtonSmallAnnual.hide();
+                        uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                        uiStorage.checkoutButtonMediumAnnual.hide();
+                        uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                        uiStorage.checkoutButtonLargeAnnual.hide();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                        uiStorage.checkoutButtonSmallMonthly.hide();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.show();
+                        uiStorage.checkoutButtonMediumMonthly.hide();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                        uiStorage.checkoutButtonLargeMonthly.hide();
+                     
                     }else{
-                        checkoutButton.on("click", function () {
-                            console.log(selectedNumberOfExtras);
-
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.mediumBaseMonthly, quantity: 1 }],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
+                        //medium monthly
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                        uiStorage.checkoutButtonSmallAnnual.hide();
+                        uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                        uiStorage.checkoutButtonMediumAnnual.hide();
+                        uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                        uiStorage.checkoutButtonLargeAnnual.hide();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                        uiStorage.checkoutButtonSmallMonthly.hide();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                        uiStorage.checkoutButtonMediumMonthly.show();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                        uiStorage.checkoutButtonLargeMonthly.hide();
+                      
                     }
                     
                     break;
     
                 case selectedPlanOptions.large:
                     if(selectedNumberOfExtras != 0){
-                        checkoutButton.on("click", function () {
-                            console.log(selectedNumberOfExtras);
-                            var extraQuantity = parseInt(selectedNumberOfExtras);
-
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.largeBaseMonthly, quantity: 1 },
-                                {price: stripeCheckoutPriceCode.largeExtraMonthly, quantity: extraQuantity}],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
+                        //large monthly extra
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                        uiStorage.checkoutButtonSmallAnnual.hide();
+                        uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                        uiStorage.checkoutButtonMediumAnnual.hide();
+                        uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                        uiStorage.checkoutButtonLargeAnnual.hide();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                        uiStorage.checkoutButtonSmallMonthly.hide();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                        uiStorage.checkoutButtonMediumMonthly.hide();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.show();
+                        uiStorage.checkoutButtonLargeMonthly.hide();
+                 
                     }else{
-                        checkoutButton.on("click", function () {
-                            console.log(selectedNumberOfExtras);
-
-                            stripe.redirectToCheckout({
-                                lineItems: [{ price: stripeCheckoutPriceCode.largeBaseMonthly, quantity: 1 }],
-                                mode: 'subscription',
-                                successUrl: window.location.protocol + '//go.youli.io/ttc/renewal-success',
-                                cancelUrl: window.location.protocol + '//go.youli.io/ttc/renewal-failed'
-                            })
-                                .then(function (result) {
-                                    if (result.error) {
-                                        /*
-                                         * If `redirectToCheckout` fails due to a browser or network
-                                         * error, display the localized error message to your customer.
-                                         */
-                                        var displayError = document.getElementById('error-message');
-                                        displayError.textContent = result.error.message;
-                                    }
-                                });
-                        });
+                        //large monthly
+                        uiStorage.checkoutButtonIndividualAnnual.hide();
+                        uiStorage.checkoutButtonSmallAnnualExtra.hide();
+                        uiStorage.checkoutButtonSmallAnnual.hide();
+                        uiStorage.checkoutButtonMediumAnnualExtra.hide();
+                        uiStorage.checkoutButtonMediumAnnual.hide();
+                        uiStorage.checkoutButtonLargeAnnualExtra.hide();
+                        uiStorage.checkoutButtonLargeAnnual.hide();
+    
+                        uiStorage.checkoutButtonIndividualMonthly.hide();
+                        uiStorage.checkoutButtonSmallMonthlyExtra.hide();
+                        uiStorage.checkoutButtonSmallMonthly.hide();
+                        uiStorage.checkoutButtonMediumMonthlyExtra.hide();
+                        uiStorage.checkoutButtonMediumMonthly.hide();
+                        uiStorage.checkoutButtonLargeMonthlyExtra.hide();
+                        uiStorage.checkoutButtonLargeMonthly.show();
+                        
                     }
                    
                     break;
