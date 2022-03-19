@@ -136,7 +136,7 @@ $(function () {
     var selectedPlan = selectedPlanOptions.individual;
 
 
-    uiStorage.packageCardIndividual.css('outline', 'solid 5px #074ee8');
+    uiStorage.packageCardIndividual.css('box-shadow', '0 0 5px 5px #074ee8');
 
     var isSwitchedToAnnual = true;
 
@@ -592,9 +592,11 @@ $(function () {
     var updatePlanCardStyle = function () {
         uiStorage.ttcPlanCards.each(function () {
             if ($(this).attr("id") === selectedPlan) {
-                $(this).css('outline', 'solid 5px #074ee8');
+                // $(this).css('outline', 'solid 5px #074ee8');
+                $(this).css('box-shadow', '0 0 5px 5px #074ee8');
+                
             } else {
-                $(this).css('outline', '');
+                $(this).css('box-shadow', '');
             }
         })
     }
