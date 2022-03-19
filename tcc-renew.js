@@ -1,10 +1,6 @@
 $(function () {
 
     var stripe = Stripe('pk_test_E1z8Bu15MYOOPyWRigo1gjLk00ULMn11wW');
-    // var checkoutButton = document.getElementById('checkout-button');
-    var checkoutButton = $('#checkout-button');
-
-
 
     var uiStorage = {
 
@@ -54,6 +50,8 @@ $(function () {
         packageCardExtraSelector: $(".ttc-renew-number-login-selector"),
 
         packageCardBillingFrequencyText: $(".billing-frequency-text-info"),
+
+        packageCardIndividual: $('#ttc-plan-individual'),
 
         
         
@@ -136,6 +134,10 @@ $(function () {
 
 
     var selectedPlan = selectedPlanOptions.individual;
+
+
+    uiStorage.packageCardIndividual.css('outline', 'solid 5px #074ee8');
+
     var isSwitchedToAnnual = true;
 
     uiStorage.checkoutButtonIndividualAnnual.on("click", function () {
