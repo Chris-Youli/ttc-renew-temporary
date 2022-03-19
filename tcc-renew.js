@@ -537,7 +537,7 @@ $(function () {
             var selectorPackageLevelId = $(this).attr('id');
             switch (selectorPackageLevelId){
                 case "ttc-renew-field-extra-small":
-                    selectedPlanOptions.small;
+                    selectedPlan = selectedPlanOptions.small;
                     break;
                 
                 case "ttc-renew-field-extra-medium":
