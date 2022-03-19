@@ -532,6 +532,21 @@ $(function () {
             }else{
                 selectedNumberOfExtras = 0;
             }
+            var selectorPackageLevelId = $(this).attr('id');
+            switch (selectorPackageLevelId){
+                case "ttc-renew-field-extra-small":
+                    selectedPlanOptions.small;
+                    break;
+                
+                case "ttc-renew-field-extra-medium":
+                    selectedPlan = selectedPlanOptions.medium;
+                    break;
+
+                case "ttc-renew-field-extra-large":
+                    selectedPlan = selectedPlanOptions.large;
+                    break;
+            }
+            updatePlanCardStyle();
             updateCheckoutPanel();
 
         })
