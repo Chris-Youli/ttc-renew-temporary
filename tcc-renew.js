@@ -1,6 +1,6 @@
 $(function () {
 
-    var stripe = Stripe('pk_test_E1z8Bu15MYOOPyWRigo1gjLk00ULMn11wW');
+    var stripe = Stripe('pk_live_AY6Q5iq89MG9CnmHlb4h4oti00Q64Bt45h');
 
     var uiStorage = {
 
@@ -108,26 +108,46 @@ $(function () {
         withoutJournal: "Not Included"
     }
 
+    //ttc test price keys
+    // var stripeCheckoutPriceCode = {
+    //     individualBaseMonthly: "price_1KdnMzLGwAXHXsFBEaXvSUPQ",
+    //     smallBaseMonthly: "price_1KdnMzLGwAXHXsFBgV12ao5y",
+    //     mediumBaseMonthly:"price_1KdnMzLGwAXHXsFBAdkprUBz",
+    //     largeBaseMonthly:"price_1KdnMzLGwAXHXsFB0VXE73Fv",
+
+    //     individualBaseAnnual: "price_1KdnMzLGwAXHXsFBUEcDiZXw",
+    //     smallBaseAnnual: "price_1KdnMzLGwAXHXsFBA8dwvv2m",
+    //     mediumBaseAnnual: "price_1KdnMzLGwAXHXsFBShdUP9py",
+    //     largeBaseAnnual: "price_1KdnMzLGwAXHXsFBcFpRBoll",
+
+    //     smallExtraMonthly: "price_1KdnQlLGwAXHXsFBFS5HPeCm",
+    //     mediumExtraMonthly:"price_1KdnQlLGwAXHXsFBj6DQwScz",
+    //     largeExtraMonthly:"price_1KdnQlLGwAXHXsFBCLNG9sWV",
+
+    //     smallExtraAnnual: "price_1KdnQlLGwAXHXsFBwcr0B3II",
+    //     mediumExtraAnnual:"price_1KdnQlLGwAXHXsFBDDzTgiRR",
+    //     largeExtraAnnual:"price_1KdnQlLGwAXHXsFBuz2ha1uo"
+    // }
+
     var stripeCheckoutPriceCode = {
-        individualBaseMonthly: "price_1KdnMzLGwAXHXsFBEaXvSUPQ",
-        smallBaseMonthly: "price_1KdnMzLGwAXHXsFBgV12ao5y",
-        mediumBaseMonthly:"price_1KdnMzLGwAXHXsFBAdkprUBz",
-        largeBaseMonthly:"price_1KdnMzLGwAXHXsFB0VXE73Fv",
+        individualBaseMonthly: "price_1JuQ7KLGwAXHXsFB1u60RdLY",
+        smallBaseMonthly: "price_1KfZ01LGwAXHXsFBhMDoUZ3S",
+        mediumBaseMonthly:"price_1KfZ1jLGwAXHXsFBcD61HB1f",
+        largeBaseMonthly:"price_1KfZ4GLGwAXHXsFBUlNqKEed",
 
-        individualBaseAnnual: "price_1KdnMzLGwAXHXsFBUEcDiZXw",
-        smallBaseAnnual: "price_1KdnMzLGwAXHXsFBA8dwvv2m",
-        mediumBaseAnnual: "price_1KdnMzLGwAXHXsFBShdUP9py",
-        largeBaseAnnual: "price_1KdnMzLGwAXHXsFBcFpRBoll",
+        individualBaseAnnual: "price_1JuQ7KLGwAXHXsFBkqi1gJp8",
+        smallBaseAnnual: "price_1KfZ1NLGwAXHXsFB0n1FdCbp",
+        mediumBaseAnnual: "price_1KfZ3XLGwAXHXsFBxMBPFtuF",
+        largeBaseAnnual: "price_1KfZ4hLGwAXHXsFB6cufqP7L",
 
-        smallExtraMonthly: "price_1KdnQlLGwAXHXsFBFS5HPeCm",
-        mediumExtraMonthly:"price_1KdnQlLGwAXHXsFBj6DQwScz",
-        largeExtraMonthly:"price_1KdnQlLGwAXHXsFBCLNG9sWV",
+        smallExtraMonthly: "price_1KfZ9fLGwAXHXsFBnFlEpaEC",
+        mediumExtraMonthly:"price_1KfZB7LGwAXHXsFBVW73ZSaK",
+        largeExtraMonthly:"price_1KfZCHLGwAXHXsFBpZRSi2yD",
 
-        smallExtraAnnual: "price_1KdnQlLGwAXHXsFBwcr0B3II",
-        mediumExtraAnnual:"price_1KdnQlLGwAXHXsFBDDzTgiRR",
-        largeExtraAnnual:"price_1KdnQlLGwAXHXsFBuz2ha1uo"
+        smallExtraAnnual: "price_1KfZALLGwAXHXsFB9mHuafeZ",
+        mediumExtraAnnual:"price_1KfZBhLGwAXHXsFBlnZde5Oe",
+        largeExtraAnnual:"price_1KfZCZLGwAXHXsFB7RDnSJnw"
     }
-
 
 
 
@@ -136,7 +156,7 @@ $(function () {
     var selectedPlan = selectedPlanOptions.individual;
 
 
-    uiStorage.packageCardIndividual.css('box-shadow', '0 0 5px 5px #074ee8');
+    uiStorage.packageCardIndividual.css('box-shadow', '0 0 5px 5px #223146');
 
     var isSwitchedToAnnual = true;
 
@@ -592,8 +612,8 @@ $(function () {
     var updatePlanCardStyle = function () {
         uiStorage.ttcPlanCards.each(function () {
             if ($(this).attr("id") === selectedPlan) {
-                // $(this).css('outline', 'solid 5px #074ee8');
-                $(this).css('box-shadow', '0 0 5px 5px #074ee8');
+                // $(this).css('outline', 'solid 5px #223146');
+                $(this).css('box-shadow', '0 0 5px 5px #223146');
                 
             } else {
                 $(this).css('box-shadow', '');
