@@ -104,7 +104,7 @@ $(function () {
     var selectedNumberOfExtras = 0;
 
     var checkoutPanelJournalText = {
-        withJournal: "Free w/ Annual Subscription",
+        withJournal: "Free w/ Annual Subscription*",
         withoutJournal: "Not Included"
     }
 
