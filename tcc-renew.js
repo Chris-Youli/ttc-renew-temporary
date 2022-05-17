@@ -52,6 +52,7 @@ $(function () {
         packageCardBillingFrequencyText: $(".billing-frequency-text-info"),
 
         packageCardIndividual: $('#ttc-plan-individual'),
+        packageCardSmall: $('#ttc-plan-small'),
 
         
         
@@ -153,10 +154,10 @@ $(function () {
 
 
 
-    var selectedPlan = selectedPlanOptions.individual;
+    var selectedPlan = selectedPlanOptions.small;
 
 
-    uiStorage.packageCardIndividual.css('box-shadow', '0 0 5px 5px #223146');
+    uiStorage.packageCardSmall.css('box-shadow', '0 0 5px 5px #223146');
 
     var isSwitchedToAnnual = true;
 
